@@ -5,7 +5,7 @@ using namespace std;
 //конструктор по умолчанию // создает массив на 10 элементов //
 MyClass::MyClass()
 {
-	cout << "\nКонструктор по умолч. - отсортированный массив на 10 элементов, объект " << this << ": ";
+	cout << "\nКонструктор по умолч. - отсортированный массив на 10 элементов, объект " << this << ":";
 	int Size{ 10 };
 	this->data = new int[Size]; //int arr[10];
 	for (int i = 0; i < Size; i++) //заполняем массив рандомными значениями
@@ -42,8 +42,8 @@ bool MyClass::operator==(const MyClass & other)//принимаем константный объект кл
 			break;
 		}		
 	}
-	if (check == true) { cout << "Объекты " << this << " & " << &other << " равны" << endl; }
-	else { cout << "Объекты " << this << " & " << &other << " не равны" << endl; }
+	if (check == true) { cout << "Объекты " << this << " & " << &other << " равны "; }
+	else { cout << "Объекты " << this << " & " << &other << " не равны "; }
 
 	return check;
 }
