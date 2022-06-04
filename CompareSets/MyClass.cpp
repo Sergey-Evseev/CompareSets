@@ -34,12 +34,16 @@ MyClass::MyClass(int size)//передаем размерность массива
 bool MyClass::operator==(const MyClass & other)//принимаем константный объект класса, с которым сравниваем
 {
 	bool check = true;
-	if (this->Size != other.Size) check = false;
-	
-	
-
-	if (check == true) { cout << "Объекты равны" << this << " & " << &other << endl; }
-	else { cout << "Объекты не равны" << endl; }
+	if (this->Size != other.Size) { check = false; }//если длина массивов отличается вернуть false
+	else for (int i = 0; i < Size; i++) {//если длина одинаковая в цикле сравниваем i-тый элемент каждого массива
+		if (*(data + i) != *(other.data + i))
+		{
+			check = false;//при нахождении первого неравного элемента прерываем цикл
+			break;
+		}		
+	}
+	if (check == true) { cout << "Объекты " << this << " & " << &other << " равны" << endl; }
+	else { cout << "Объекты " << this << " & " << &other << " не равны" << endl; }
 
 	return check;
 }
