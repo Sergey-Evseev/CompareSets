@@ -30,6 +30,19 @@ MyClass::MyClass(int size)//передаем размерность массива
 	}
 	PrintArr(data, Size);
 }
+//перегрузка оператора 'равно'//
+bool MyClass::operator==(const MyClass & other)//принимаем константный объект класса, с которым сравниваем
+{
+	bool check = true;
+	if (this->Size != other.Size) check = false;
+	
+	
+
+	if (check == true) { cout << "Объекты равны" << this << " & " << &other << endl; }
+	else { cout << "Объекты не равны" << endl; }
+
+	return check;
+}
 //перегрузка конструктора копирования//
 MyClass::MyClass(const MyClass& other)
 {
@@ -113,12 +126,12 @@ MyClass& MyClass::add(int i)
 	if (!isInclude(i)) {//если такого числа нет в массиве
 		int* temp = new int[this->Size + 1];//созд.врем. массива на 1 эл-т больше
 		for (int j = 0; j < Size; j++) { //копирование эл-тов в врем. массив
-			temp[j] = data[j];
+			temp[j] = data[j];//копируем из старого массива в новый 
 		}
 		temp[Size] = i;//последнему элементу присвоить передаваемое значение
 		delete[] data;//удалить элементы старого массива
 		data = temp;//присвоить массиву объекта новый массив 
-		Size++;
+		Size++;//увеличиваем память под итоговый массив
 	}
 	cout << "Массив " << this << " после добавления числа " << i << ":" << endl;
 	PrintArr(data, Size); cout << endl;
