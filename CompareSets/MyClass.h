@@ -17,7 +17,8 @@ public:
 	void quickSort(int* arr, int N);//функция быстрой сортировки
 	bool isInclude(int d);//функция проверки наличия числа
 	int getNum(int i);//функция возвращает значение i-го элемента массива
-	MyClass& add(int i); //добавление числа в массив
+	MyClass& add(int d); //добавление числа в массив
+	MyClass& exclude(int d);//удаление числа из массива
 
 	~MyClass();
 };
