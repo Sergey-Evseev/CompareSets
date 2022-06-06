@@ -19,7 +19,11 @@ public:
 	int getNum(int i);//функци€ возвращает значение i-го элемента массива
 	MyClass& add(int d); //добавление числа в массив
 	MyClass& exclude(int d);//удаление числа из массива
-
+	MyClass& operator + (const MyClass& other);//перегруженный оператор сложени€
+	
 	~MyClass();
 };
+
+
+
 
