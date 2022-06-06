@@ -170,22 +170,21 @@ MyClass & MyClass::exclude(int d)
 	return *this;
 }
 
-//оператор сложения массивов//DRAFT DRAFT DRAFT
+//оператор сложения массивов//DRAFT DRAFT DRAFT from add constructor
 MyClass & MyClass::operator+(const MyClass & other)
 {
-	cout << "Оператор сложения: " << this << endl;
-	this->Size = other.Size;//поле Size просто копируем, так как он в динамической памяти не выделяется (очищать не нужно)
-	if (this->data != nullptr)//проверка на ненулевой указатель
-	{
-		delete[] this->data;
-	}
-	//логика поэлементного копирования после очистки текущего объекта:
-	this->data = new int[other.Size];
-	for (int i = 0; i < other.Size; i++)
-	{
-		this->data[i] = other.data[i];
-	}
-	PrintArr(data, Size); cout << endl;
+	cout << "Оператор сложения с массивом " << this << " :" << endl;
+	int allSize = this->Size + other.Size;//определяем размер общего массива
+	int *temp = new int[allSize];
+	temp = data;//это убрать и добавить цикл поэлементного копирования в temp первого массива
+		
+	for (int i = Size; i < allSize; i++) { 
+		for (int j = 0; j < other.Size; j++, i++) {
+			temp[i] = other.data[j];//добавляем из второго массива в временный
+		}
+	}		
+	data = temp;	
+	PrintArr(data, allSize); cout << endl;
 	return *this;
 }
 
