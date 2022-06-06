@@ -26,7 +26,7 @@ MyClass::MyClass(int size)//передаем размерность массива
 	this->data = new int[size];//создаем дин.массив и присваиваем его переменной-указателю класса 
 	for (int i = 0; i < size; i++) //заполн€ем массив рандомными значени€ми
 	{
-		*(data + i) = rand() % 100;
+		*(data + i) = rand() % 3;
 	}
 	PrintArr(data, Size);
 }
@@ -111,12 +111,12 @@ bool MyClass::isInclude(int d)
 	if (data != nullptr) {
 		for (int i = 0; i < Size; i++) {
 			if (d == getNum(i)) {
-				cout << " - есть такое число!" << endl << endl;
+				cout << " - есть такое число!" << endl;
 				return true;
 			}			
 		}
 	}
-	cout << " - нет такого числа!" << endl << endl;
+	cout << " - нет такого числа!" << endl;
 	return false;
 }
 int MyClass::getNum(int i)//функци€ получени€ значени€ элемента
@@ -144,23 +144,28 @@ MyClass& MyClass::add(int d)
 //функци€ удалени€ числа из массива//
 MyClass & MyClass::exclude(int d)
 {
-	cout << "”даление числа " << d << " из массива:" << endl;
+	cout << "”даление числа " << d << " из массива " << this << ":" << endl;
 	PrintArr(data, Size); cout << endl;
-	if (isInclude(d)) {//проверка наличи€ числа
-		int* temp = new int[this->Size + 1];//созд.врем. массива на 1 эл-т больше
-		for (int j = 0; j < Size; j++) { //копирование эл-тов в врем. массив
-			temp[j] = data[j];//копируем из старого массива в новый 
+	int found = 0;
+	if (isInclude(d)) {//проверка наличи€ числа		
+		for (int i = 0; i < Size; i++) { //копирование эл-тов в врем. массив
+			//temp[i] = data[i];
+			if (*(data+i) == d)
+			{
+				for (int j = i; j<(Size - 1); j++) 
+				{
+					*(data+i) = *(data +j + 1);					
+				}
+				i--;
+				Size--;
+				found++;
+			}			
 		}
-		temp[Size] = d;//последнему элементу присвоить передаваемое значение
-		delete[] data;//удалить элементы старого массива
-		data = temp;//присвоить массиву объекта новый массив 
-		Size++;//увеличиваем пам€ть под итоговый массив
-
-
+		cout << "„исло " << d << " удалено " << found << " раз" << endl;
 		cout << "ћассив " << this << " после удалени€ числа " << d << ":" << endl;
 		PrintArr(data, Size); cout << endl;
 	}
-	else cout << "Ќет такого числа" << endl;
+	else cout << "Ќичего не удалено" << endl;
 	
 	return *this;
 }
