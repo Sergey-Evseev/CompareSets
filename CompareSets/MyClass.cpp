@@ -148,13 +148,12 @@ MyClass & MyClass::exclude(int d)
 	PrintArr(data, Size); cout << endl;
 	int found = 0;
 	if (isInclude(d)) {//проверка наличия числа		
-		for (int i = 0; i < Size; i++) { //копирование эл-тов в врем. массив
-			//temp[i] = data[i];
+		for (int i = 0; i < Size; i++) { //копирование эл-тов в врем. массив			
 			if (*(data+i) == d)
 			{
-				for (int j = i; j<(Size - 1); j++) 
+				for (int j = i; j<Size; j++) 
 				{
-					*(data+i) = *(data +j + 1);					
+					*(data+j) = *(data +j + 1);					
 				}
 				i--;
 				Size--;
