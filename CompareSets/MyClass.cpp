@@ -170,14 +170,18 @@ MyClass & MyClass::exclude(int d)
 	return *this;
 }
 
-//оператор сложения массивов//DRAFT DRAFT DRAFT from add constructor
+//перегрузка оператора сложения массивов (from add constructor)
 MyClass & MyClass::operator+(const MyClass & other)
 {
 	cout << "Оператор сложения с массивом " << this << " :" << endl;
 	int allSize = this->Size + other.Size;//определяем размер общего массива
 	int *temp = new int[allSize];
-	temp = data;//это убрать и добавить цикл поэлементного копирования в temp первого массива
-		
+	
+	for (int i = 0; i < Size; i++) {
+		for (int j = 0; j < Size; j++, i++) {
+			temp[i] = data[j];//копируем элементы из первого массива во временный
+		}
+	}	
 	for (int i = Size; i < allSize; i++) { 
 		for (int j = 0; j < other.Size; j++, i++) {
 			temp[i] = other.data[j];//добавляем из второго массива в временный
